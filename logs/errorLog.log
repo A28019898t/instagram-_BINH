@@ -9,3 +9,43 @@ dfa935a7-5483-49dd-ab58-c57250be5398	2023-04-08	12:04:11	SyntaxError: Unexpected
 f3d9dae4-d5bd-4358-8447-78b197103e66	2023-04-08	01:04:38	SyntaxError: Unexpected token , in JSON at position 336	PATCH	/users	undefined
 d3b1eb32-f392-4cf6-89be-ca89070fd8a6	2023-04-08	01:04:47	ValidationError: User validation failed: fullName: Path `fullName` is required.	PATCH	/users	undefined
 e9afa2c5-afd5-4635-87dc-a859f9d855b5	2023-04-08	01:04:39	CastError: Cast to ObjectId failed for value "sss" (type string) at path "_id" for model "User"	GET	/users/sss	undefined
+1826810f-b8b3-4f03-b655-eb767a182dd2	2023-04-08	05:04:06	FirebaseError: Firebase Storage: User does not have permission to access 'posts/337035440_1358378968275176_7535343250240046300_n.png    0005-04-08 05:04:02'. (storage/unauthorized)	POST	/posts	undefined
+65a1d182-7413-457f-9bbd-58c84b3149fe	2023-04-08	07:04:37	ReferenceError: posts is not defined	PATCH	/posts	undefined
+da11ac33-9b04-4f5f-9cf1-d6ed47928b66	2023-04-08	07:04:06	TypeError: Cannot read properties of undefined (reading 'media')	PATCH	/posts	undefined
+3ccd9a14-f020-4a61-93ac-c5f83708cfea	2023-04-08	07:04:52	ReferenceError: deleteObject is not defined	PATCH	/posts	undefined
+1e4da742-f1bf-4275-991b-e6244c5ba581	2023-04-08	07:04:26	FirebaseError: Firebase Storage: The operation 'deleteObject' cannot be performed on a root reference, create a non-root reference using child, such as .child('file.png'). (storage/invalid-root-operation)	PATCH	/users	undefined
+652f359c-5aa6-4755-a19a-e9a783ba9d2c	2023-04-08	08:04:06	FirebaseError: Firebase Storage: Invalid URL 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fantimatter.vn%2Fhinh-anh-meo-khoc%2F&psig=AOvVaw2R_t5MvFV5ZeqmeNLIyimn&ust=1681045134151000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDC5KKrmv4CFQAAAAAdAAAAABAE'. (storage/invalid-url)	DELETE	/users	undefined
+ee0d8205-59b3-4298-b767-c92372e9d12d	2023-04-08	08:04:41	FirebaseError: Firebase Storage: Invalid URL 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fantimatter.vn%2Fhinh-anh-meo-khoc%2F&psig=AOvVaw2R_t5MvFV5ZeqmeNLIyimn&ust=1681045134151000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDC5KKrmv4CFQAAAAAdAAAAABAE'. (storage/invalid-url)	DELETE	/users	undefined
+256fc2fb-ee68-49ae-ae27-24d157720a1f	2023-04-08	08:04:33	FirebaseError: Firebase Storage: Invalid URL 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fantimatter.vn%2Fhinh-anh-meo-khoc%2F&psig=AOvVaw2R_t5MvFV5ZeqmeNLIyimn&ust=1681045134151000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDC5KKrmv4CFQAAAAAdAAAAABAE'. (storage/invalid-url)	DELETE	/users	undefined
+1298023f-e706-4497-9f30-e3b9221d9e3e	2023-04-08	08:04:48	FirebaseError: Firebase Storage: Invalid URL 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fantimatter.vn%2Fhinh-anh-meo-khoc%2F&psig=AOvVaw2R_t5MvFV5ZeqmeNLIyimn&ust=1681045134151000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDC5KKrmv4CFQAAAAAdAAAAABAE'. (storage/invalid-url)	DELETE	/users	undefined
+369ba586-0d38-49f0-b49d-c376c8cf0311	2023-04-08	08:04:58	FirebaseError: Firebase Storage: Invalid URL 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fantimatter.vn%2Fhinh-anh-meo-khoc%2F&psig=AOvVaw2R_t5MvFV5ZeqmeNLIyimn&ust=1681045134151000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDC5KKrmv4CFQAAAAAdAAAAABAE'. (storage/invalid-url)	DELETE	/users	undefined
+a5ae2e84-4f4a-44fc-95d3-4dd19b4a7cbd	2023-04-08	08:04:28	FirebaseError: Firebase Storage: Invalid URL 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fantimatter.vn%2Fhinh-anh-meo-khoc%2F&psig=AOvVaw2R_t5MvFV5ZeqmeNLIyimn&ust=1681045134151000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDC5KKrmv4CFQAAAAAdAAAAABAE'. (storage/invalid-url)	PATCH	/users	undefined
+ec3a3eb8-5ecb-4d1d-b8d3-6224407b4479	2023-04-08	08:04:31	FirebaseError: Firebase Storage: Invalid URL 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fantimatter.vn%2Fhinh-anh-meo-khoc%2F&psig=AOvVaw2R_t5MvFV5ZeqmeNLIyimn&ust=1681045134151000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNDC5KKrmv4CFQAAAAAdAAAAABAE'. (storage/invalid-url)	PATCH	/users	undefined
+e6a76d17-b4d5-4f6b-b304-e2bd69fc8dac	2023-04-08	10:04:58	SyntaxError: Unexpected token ' in JSON at position 12	GET	/comments	undefined
+67ab5c4e-891b-4c32-aec2-3b680586b4a5	2023-04-08	11:04:19	FirebaseError: Firebase Storage: The operation 'deleteObject' cannot be performed on a root reference, create a non-root reference using child, such as .child('file.png'). (storage/invalid-root-operation)	DELETE	/posts	undefined
+c947b510-bc7b-4585-8d28-090cd186df6b	2023-04-08	11:04:48	FirebaseError: Firebase Storage: The operation 'deleteObject' cannot be performed on a root reference, create a non-root reference using child, such as .child('file.png'). (storage/invalid-root-operation)	DELETE	/posts	undefined
+690bd90d-79d4-485c-a0b1-d2e6471c13ec	2023-04-08	11:04:38	PayloadTooLargeError: request entity too large	POST	/posts	undefined
+26d04404-90f5-4935-9326-c77322d29572	2023-04-08	11:04:50	PayloadTooLargeError: request entity too large	POST	/posts	undefined
+84d4d155-dc98-4114-a8de-fde0671db157	2023-04-08	11:04:15	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+b7af5387-e061-4fd4-a6a8-7402163a1da5	2023-04-08	11:04:37	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+50595101-274a-4c78-8a85-5b84e3360103	2023-04-08	11:04:18	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+b83e1849-f4e1-4bc3-956b-bc9aee2934dc	2023-04-08	11:04:45	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+75bd53c3-2d91-4508-98b2-5ffa65c0be87	2023-04-08	11:04:49	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+cc2a1908-08d1-46fa-a7d9-f0a315796fe7	2023-04-08	11:04:50	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+8307847a-88bc-437a-9dfe-631ae0d9b111	2023-04-08	11:04:58	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+d2c2c350-20db-489c-91a4-2069b819be2d	2023-04-08	11:04:59	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+f6e948ee-8042-4efc-ad51-64ec71e4b581	2023-04-08	11:04:59	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+da2f49f0-11f7-4ce4-b383-126e06a6d86b	2023-04-08	11:04:00	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+bc63c161-1d57-49c2-8bcf-893c61ad4c47	2023-04-08	11:04:00	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+6616acab-32b9-4e9a-8cca-17b7ee4530d0	2023-04-08	11:04:00	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+c4de8da7-8c0c-48c0-9b67-d173f09be0ea	2023-04-08	11:04:00	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+57f5e3fa-3595-4e9a-a53c-4094338b5834	2023-04-08	11:04:06	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+a0fbea89-a3de-46e6-b9c3-0f7201dfe65b	2023-04-08	11:04:07	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+b29baec3-181a-483a-b206-112a20744a59	2023-04-08	11:04:07	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+93f60ab0-272b-49ce-8dbb-bff2518c9294	2023-04-08	11:04:07	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+4aa33bc3-ab20-4723-b810-f976d1ec5feb	2023-04-08	11:04:08	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+3e5b3a10-2c05-4529-99d1-0f740a1bba76	2023-04-08	11:04:08	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+15278ceb-febd-488f-b22f-96b053321425	2023-04-08	11:04:08	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+5cc683cc-8bed-464d-bd24-cfdf830be6d3	2023-04-08	11:04:08	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+edb4de9d-adc5-43ad-8e84-7f2b03549105	2023-04-08	11:04:03	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined
+4b446b4a-b229-43f3-88aa-ce9e20fb4017	2023-04-08	11:04:19	SyntaxError: Unexpected token - in JSON at position 0	POST	/posts	undefined

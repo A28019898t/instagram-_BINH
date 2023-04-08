@@ -17,8 +17,7 @@ const userModel = new mongoose.Schema({
         type: String
     },
     avatarImage: {
-        type: String,
-        default: ''
+        type: String
     },
     email: {
         type: String

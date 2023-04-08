@@ -6,8 +6,8 @@ const { upload } = require('../controllers/uploadFileController')
 router.route('/')
     .get(getAllPosts)
     .post(upload.single("filename"), createNewPost)
-    .patch(updatePost)
-    .delete(deletePost)
+    .patch(upload.single("filename"), updatePost)
+    .delete(upload.single("filename"), deletePost)
 
 router.get('/:id', getPost);
 

@@ -1,5 +1,5 @@
 const { initializeApp } = require('firebase/app');
-const { getStorage, ref, getDownloadURL, uploadBytesResumable } = require('firebase/storage')
+const { getStorage } = require('firebase/storage')
 const multer = require('multer');
 const firebaseConfig = require('../config/firebaseConfig');
 const { format } = require('date-fns')
@@ -14,6 +14,6 @@ const storage = getStorage();
 const upload = multer({ storage: multer.memoryStorage() });
 
 // Set date
-const currentDateTime = () => format(new Date(), 'hhhh-MM-dd hh:MM:ss');
+const currentDateTime = () => format(new Date(), 'yyyy-MM-dd hh:MM:ss');
 
 module.exports = { storage, upload, currentDateTime }

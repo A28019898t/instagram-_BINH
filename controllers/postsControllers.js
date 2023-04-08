@@ -1,8 +1,7 @@
 const asyncHandler = require('express-async-handler');
-const bcrypt = require('bcrypt');
 const Post = require('../models/Post');
 const { storage, currentDateTime } = require('./uploadFileController');
-const { ref, getDownloadURL, uploadBytesResumable } = require('firebase/storage')
+const { ref, getDownloadURL, uploadBytesResumable, deleteObject } = require('firebase/storage')
 
 // @desc Get all posts
 // @route GET /posts
@@ -33,25 +32,19 @@ const createNewPost = asyncHandler(async (req, res) => {
         user: userId,
     }
 
-    // set a URL for file
-    let downLoadUrl;
-
     if (req?.file) {
         const storageRef = ref(storage, `posts/${req.file.originalname + '    ' + currentDateTime()}`);
 
-        //Create file metadata including the content type
+        // Create file metadata including the content type
         const metadata = {
-            contentType: req.file.mine,
-        }
+            contentType: req.file.mimetype,
+        };
 
-        // Upload the file tin the bucket storage
+        // Upload the file in the bucket storage
         const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
-        // by using uploadBytesResumable, we can control the progress of uploading like pause, resume, cancle
+        //by using uploadBytesResumable we can control the progress of uploading like pause, resume, cancel
 
-        // Grab the public url
-        downLoadUrl = await getDownloadURL(snapshot.ref);
-
-        postCreate = { ...postCreate, media: downLoadUrl }
+        postCreate = { ...postCreate, media: await getDownloadURL(snapshot.ref) }
 
         console.log('file success upload');
     }
@@ -71,11 +64,12 @@ const createNewPost = asyncHandler(async (req, res) => {
 // @route PATCH /posts
 // @access private
 const updatePost = asyncHandler(async (req, res) => {
-    const { id, fullName, postname, avatarImage, password, email, phone, gender, bio } = req.body;
+    const { id, title, like } = req.body;
+    console.log(req.body);
 
     // Confirm
-    if (!id || !postname) {
-        return res.status(400).json({ message: 'All fields are required' });
+    if (!id) {
+        return res.status(400).json({ message: 'ID required' });
     }
 
     // Find Post
@@ -85,70 +79,53 @@ const updatePost = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'Post not found' });
     }
 
-    // Check duplicate
-    const duplicate = {
-        postname: false,
-        email: false,
-        phone: false
+    if (title) { // update title
+        post.title = title;
+    }
+    if (req?.file) { // update file media
+        const storageRef = ref(storage, `posts/${req.file.originalname + '    ' + currentDateTime()}`);
+
+        // Find the file in Cloud files
+        const url = post.media; // get the url of file
+
+        const { _location: { path_ } } = ref(storage, url); // get the path of file
+
+        // Create a reference to the file to delete
+        const desertRef = ref(storage, path_);
+
+        // Delete file in Cloud Storage
+        deleteObject(desertRef).then(() => {
+            // File deleted successfully
+            console.log('delete file successfully');
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        // Create file metadata including the content type
+        const metadata = {
+            contentType: req.file.mimetype,
+        };
+
+        // Upload the file in the bucket storage
+        const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+        //by using uploadBytesResumable we can control the progress of uploading like pause, resume, cancel
+
+        post.media = await getDownloadURL(snapshot.ref);
+
+        console.log('file success upload');
     }
 
-    // check postname
-    const duplicatePostname = await Post.findOne({ postname }).lean().exec();
-    if (duplicatePostname && duplicatePostname?._id.toString() !== id) {
-        duplicate.postname = true;
-    }
-    // check phone
-    if (phone) {
-        const duplicatePhone = await Post.findOne({ phone }).lean().exec();
-        if (duplicatePhone && duplicatePhone?._id.toString() !== id) {
-            duplicate.phone = true;
+    if (like) { // update like
+        if (post.like > 0) {
+            post.like = like === 'like' ? post.like + 1 : post.like - 1;
+        } else {
+            post.like = like === 'like' ? post.like + 1 : post.like;
         }
-    }
-    // check email
-    if (email) {
-        const duplicateEmail = await Post.findOne({ email }).lean().exec();
-        if (duplicateEmail && duplicateEmail?._id.toString() !== id) {
-            duplicate.email = true;
-        }
-    }
-
-    if (duplicate.postname || duplicate.phone || duplicate.email) {
-        let text = '';
-        for (let key in duplicate) {
-            if (duplicate[key]) {
-                text = `${text} ${key}`
-            }
-        }
-        return res.status(400).json({ message: `${text} duplicated` });
-    }
-
-    post.postname = postname;
-
-    if (password) { // update password
-        post.password = await bcrypt.hash(password, 10);
-    }
-    if (fullName) { // update full name
-        post.fullName = fullName;
-    }
-    if (avatarImage) { // update avatar image
-        post.avatarImage = avatarImage;
-    }
-    if (email) { // update email
-        post.email = email;
-    }
-    if (phone) { // update phone number
-        post.phone = phone;
-    }
-    if (gender) { // update gender
-        post.gender = gender;
-    }
-    if (bio) { // update bio
-        post.bio = bio;
     }
 
     const updatedPost = await post.save(); // update post 
 
-    res.json({ message: `Post ${updatedPost.postname} with ID ${updatedPost._id} updated` });
+    res.json({ message: `Post with ID ${updatedPost._id} updated` });
 
 });
 
@@ -169,9 +146,27 @@ const deletePost = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: 'Post not found' });
     }
 
+    // Find the file in Cloud files
+    const url = post.media; // get the url of file
+
+    const { _location: { path_ } } = ref(storage, url); // get the path of file
+
+    if (path_) {
+        // Create a reference to the file to delete
+        const desertRef = ref(storage, path_);
+
+        // Delete file in Cloud Storage
+        deleteObject(desertRef).then(() => {
+            // File deleted successfully
+            console.log('delete file successfully');
+        }).catch((err) => {
+            console.log(err);
+        });
+    }
+
     const result = await post.deleteOne();
 
-    res.json({ message: `Post ${result.postname} with ID ${result._id} deleted` });
+    res.json({ message: `Post with ID ${result._id} deleted` });
 });
 
 // @desc Get post by id

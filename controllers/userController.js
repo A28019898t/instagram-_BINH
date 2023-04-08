@@ -1,6 +1,9 @@
 const asyncHandler = require('express-async-handler');
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const { storage, currentDateTime } = require('./uploadFileController');
+const { ref, getDownloadURL, uploadBytesResumable, deleteObject } = require('firebase/storage')
+
 
 // @desc Get all users
 // @route GET /users
@@ -142,14 +145,46 @@ const updateUser = asyncHandler(async (req, res) => {
 
     user.username = username;
 
+    if (req?.file) { // update file media
+        const storageRef = ref(storage, `avatars/${req.file.originalname + '    ' + currentDateTime()}`);
+
+        // Find the file in Cloud files
+        const url = user.avatarImage; // get the url of file
+
+        const { _location: { path_ } } = ref(storage, url); // get the path of file
+
+        if (path_) {
+            // Create a reference to the file to delete
+            const desertRef = ref(storage, path_);
+
+            // Delete file in Cloud Storage
+            deleteObject(desertRef).then(() => {
+                // File deleted successfully
+                console.log('delete file successfully');
+            }).catch((err) => {
+                console.log(err);
+            });
+        }
+
+        // Create file metadata including the content type
+        const metadata = {
+            contentType: req.file.mimetype,
+        };
+
+        // Upload the file in the bucket storage
+        const snapshot = await uploadBytesResumable(storageRef, req.file.buffer, metadata);
+        //by using uploadBytesResumable we can control the progress of uploading like pause, resume, cancel
+
+        user.avatarImage = await getDownloadURL(snapshot.ref);
+
+        console.log('file success upload');
+    }
+
     if (password) { // update password
         user.password = await bcrypt.hash(password, 10);
     }
     if (fullName) { // update full name
         user.fullName = fullName;
-    }
-    if (avatarImage) { // update avatar image
-        user.avatarImage = avatarImage;
     }
     if (email) { // update email
         user.email = email;
@@ -185,6 +220,24 @@ const deleteUser = asyncHandler(async (req, res) => {
 
     if (!user) {
         return res.status(400).json({ message: 'User not found' });
+    }
+
+    // Find the file in Cloud files
+    const url = user.avatarImage; // get the url of file
+
+    const { _location: { path_ } } = ref(storage, url);
+
+    if (path_) {
+        // Create a reference to the file to delete
+        const desertRef = ref(storage, path_);
+
+        // Delete file in Cloud Storage
+        deleteObject(desertRef).then(() => {
+            // File deleted successfully
+            console.log('delete file successfully');
+        }).catch((err) => {
+            console.log(err);
+        });
     }
 
     const result = await user.deleteOne();
