@@ -1,2 +1,11 @@
 229cfdde-8ec5-48d4-b435-751a4e74cf6c	2023-04-07	05:04:42	TypeError: res.sendFil is not a function	GET	/
 9910f721-27d2-489b-aaeb-cdcd8cd28eca	2023-04-07	05:04:52	TypeError: res.sendFil is not a function	GET	/
+661f1947-f5dd-4649-b60a-a5351815a1b5	2023-04-08	08:04:57	Error: Not Allowed By CORS	OPTIONS	/	https://www.google.com
+ef54c759-c7e3-4f6d-9bcb-9fe3c1819b38	2023-04-08	08:04:57	Error: Not Allowed By CORS	GET	/	https://www.google.com
+0b1087aa-8f72-472b-a8ef-bcde47696ca4	2023-04-08	12:04:06	SyntaxError: Unexpected string in JSON at position 32	POST	/users	undefined
+830cb53b-6016-4989-812c-59a729a635c0	2023-04-08	12:04:57	TypeError: Assignment to constant variable.	POST	/users	undefined
+0d5cb9ab-4c5d-46b3-bb81-c01be41f42ba	2023-04-08	12:04:04	TypeError: Assignment to constant variable.	POST	/users	undefined
+dfa935a7-5483-49dd-ab58-c57250be5398	2023-04-08	12:04:11	SyntaxError: Unexpected token } in JSON at position 214	PATCH	/users	undefined
+f3d9dae4-d5bd-4358-8447-78b197103e66	2023-04-08	01:04:38	SyntaxError: Unexpected token , in JSON at position 336	PATCH	/users	undefined
+d3b1eb32-f392-4cf6-89be-ca89070fd8a6	2023-04-08	01:04:47	ValidationError: User validation failed: fullName: Path `fullName` is required.	PATCH	/users	undefined
+e9afa2c5-afd5-4635-87dc-a859f9d855b5	2023-04-08	01:04:39	CastError: Cast to ObjectId failed for value "sss" (type string) at path "_id" for model "User"	GET	/users/sss	undefined
