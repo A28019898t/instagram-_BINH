@@ -32,6 +32,7 @@ app.use('/', require('./routes/root'));
 app.use('/users', require('./routes/usersRoute'));
 app.use('/posts', require('./routes/postsRoute'));
 app.use('/comments', require('./routes/commentsRoute'));
+app.use('/follow', require('./routes/followRoute'));
 
 app.get('*', (req, res) => {
     res.status(400);

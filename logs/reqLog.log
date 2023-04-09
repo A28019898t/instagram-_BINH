@@ -469,3 +469,6 @@ c8842e5f-e1d3-4563-a1ad-1306cb228517	2023-04-08	11:04:03	POST	/comments	undefine
 90bffd34-1b6a-4823-9ac8-0c3f679f4765	2023-04-08	11:04:20	GET	/comments/643192ca16dc47b6ebdf763f	undefined
 9d38d46c-2629-442d-8768-3ca4c2ea5eec	2023-04-08	11:04:39	GET	/comments/643192ca16dc47b6ebdf763f	undefined
 58f34304-f6c4-4a5e-97ac-ea1be7a2097d	2023-04-08	11:04:39	GET	/favicon.ico	undefined
+ed906ac9-36e2-43a5-84f0-d440cdef121a	2023-04-08	11:04:32	GET	/favicon.ico	undefined
+9f1378d3-4c96-483d-8749-aa2e1796422d	2023-04-08	11:04:43	GET	/follow	undefined
+0f07231d-e055-4939-bc29-a6d4b55c67d9	2023-04-08	11:04:43	GET	/favicon.ico	undefined
